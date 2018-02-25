@@ -38,7 +38,7 @@ class Chat extends React.Component{
         this.props.recvMsg()
         this.setState({text:''})
     }
-    
+
     render(){
         const emoji = '😀 😃 😄 😁 😆 😅 😂 😊 😇 🙂 🙃 😉 😌 😍 😘 😗 😙 😚 😋 😜 😝 😛 🤑 🤗 🤓 😎 😏 😒 😞 😔 😟 😕 🙁 😣 😖 😫 😩 😤 😠 😡 😶 😐 😑 😯 😦 😧 😮 😲 😵 😳 😱 😨 😰 😢 😥 😭 😓 😪 😴 🙄 🤔 😬 🤐 😷 🤒 🤕 😈 👿 👹 👺 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾 👐 🙌 👏 🙏 👍 👎 👊 ✊ 🤘 👌 👈 👉 👆 👇 ✋  🖐 🖖 👋  💪 🖕 ✍️  💅 🖖 💄 💋 👄 👅 👂 👃 👁 👀 '
 										.split(' ')
@@ -54,7 +54,7 @@ class Chat extends React.Component{
 		const chatmsgs = this.props.chat.chatmsg.filter(v=>v.chatid==chatid)
         return (
             <div id="chat-page">
-                <NavBar 
+                <NavBar
                     mode="dark"
                     icon={<Icon type="left" />}
                     onLeftClick={()=>{
@@ -62,15 +62,15 @@ class Chat extends React.Component{
 					}}>
                     {users[userid].name}
                 </NavBar>
-                {chatmsgs.map(v=>{
+                {chatmsgs.map((v,index)=>{
                     const avatar = require(`../img/${users[v.from].avatar}.png`)
                     return v.from==userid?(
-                        <List key={v._id}>
+                        <List key={index}>
                             <Item thumb={avatar}>
                                 {v.content}
                             </Item>
                         </List>
-                    ):(<List key={v._id}>
+                    ):(<List key={index}>
                         <Item className='chat-me'
                             extra={<img alt='头像' src={avatar} />}>
                             {v.content}
@@ -101,7 +101,7 @@ class Chat extends React.Component{
                             }
                         ></InputItem>
                     </List>
-                    {this.state.showEmoji?<Grid 
+                    {this.state.showEmoji?<Grid
 						data={emoji}
 						columnNum={9}
 						carouselMaxRow={4}
@@ -116,8 +116,8 @@ class Chat extends React.Component{
                 </div>
             </div>
         )
-             
-    } 
+
+    }
 }
 
 export default Chat

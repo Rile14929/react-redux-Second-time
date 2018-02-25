@@ -39,7 +39,7 @@ function msgRead({from,userid,num}){
 }
 export function readMsg(from){
 	return (dispatch,getState)=>{
-		axios.post('/user/readmsg',{from}
+		axios.post('/user/readmsg',{from})
 			.then(res=>{
 				console.log(res)
 				const userid = getState().user._id
